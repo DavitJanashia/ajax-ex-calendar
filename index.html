@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8"> <!--  -->
+    <title>Home</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- ? -->
+    <link rel="stylesheet" href="css/all.min.css"> <!-- font awsome-is dokumenttan linki  -->
+    <link rel="stylesheet" href="css/fontawesome.min.css"> <!-- font awsome-is dokumenttan linki  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"></script> <!-- handlebar -->
+    <!-- moment js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+      <!-- handlebar template -->
+      <script id="template" type="text/x-handlebars-template">
+        <option class="my-opt" value="{{ value }}">{{ valueTxt }}</option>
+      </script>
+
+      <script id="template-gen" type="text/x-handlebars-template">
+        <li class="my-day-t" data-value='{{ date }}'>{{ date }}</li>
+      </script>
+
+
+    <link rel="stylesheet" href="css/style.css"> <!-- chemi css faili -->
+  </head>
+
+  <body>
+
+    <select id="my-day" class="" name="">
+    </select>
+
+    <select id="my-month" class="" name="">
+    </select>
+
+    <select id="my-year" class="" name="">
+    </select>
+
+    <button id="my-btnn" type="button" name="button">BBB</button>
+    <button id="my-btnn-prova" type="button" name="button">CCC</button>
+
+
+
+    <ul id="my-january">
+      <h2>January</h2>
+    </ul>
+
+
+    <!-- JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/script5.js"></script>
+  </body>
+
+</html>
