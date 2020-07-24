@@ -192,7 +192,11 @@
 // getCalendar2018();
 // ************************************************
 
-
+// var m = moment().day(); // gives 4 for thursday
+// var d = moment().day(0); //shows sunday
+// var a = moment().day('Monday'); //set the day of week to monday
+// var k = moment().day(10); //since it greater than 0-6 it sets to the next week and outputs Wed.
+// var o = moment().day(-5); // since the value is -ve it will set for last week
 
 
 
@@ -234,10 +238,38 @@ function init(){
   }
   });
 
+  printWeek()
+
 }
 
 // ******************************************************************
+function printWeek(){
+  // var daysInWeek = currentMonth.daysInMonth();
+  var templateWeek = $('#template-week').html();
+  var compiledWeek = Handlebars.compile(templateWeek);
+  var targetWeek = $('#days-week');
+  // targetGen.html('');
 
+
+  for (var i = 0; i <= 6; i++) {
+    var dd = moment().day(i);
+    var weekTxt = dd.format('dddd');
+    // var momObj = moment({
+    //   days:i,
+    // });
+
+    // var dayssHTML = compiledWeek({
+    //   dataday: i,
+    //   dayname: momObj.format('dddd')
+    // });
+    // targetWeek.append(dayssHTML);
+    targetWeek.append(compiledWeek({
+      dataday: i,
+      dayname: weekTxt
+    }));
+
+  }
+}
 // ******************************************************************
 
 
@@ -249,18 +281,21 @@ function printMonth(currentMonth){
   var targetGen = $('#my-month-new');
   targetGen.html('');
 
+  // ******************************************************************
+
 
   for (var i = 1; i <= daysInMonth; i++) {
     var momObj = moment({
       years:currentMonth.year(),
       months:currentMonth.month(),
-      days:i,
+      days:i
     });
     // console.log(momObj);
 
     var daysHTML = compiledGen({
       value: i,
-      datecomplete: momObj.format('YYYY-MM-DD')
+      datecomplete: momObj.format('YYYY-MM-DD'),
+      dataday: momObj.format('d')
     });
     targetGen.append(daysHTML);
 
@@ -293,7 +328,8 @@ function printHoliday(currentMonth){
           // $("#my-month-new > li[date-datecomplete='" + myResp[i]['date'] + "']");
           var holiDD = $("#my-month-new > li[data-datecomplete='" + myResp[i]['date'] + "']");
           console.log(holiDD);
-          holiDD.append(' ' + myName);
+          holiDD.append('<h4>' + myName + '</h4>');
+          holiDD.addClass('holiday');
           // console.log("#my-january-new > li[data-datecomplete='" + myResp[i]['date'] + "']");
 
 

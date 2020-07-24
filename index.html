@@ -15,7 +15,11 @@
 
 
       <script id="template-gen" type="text/x-handlebars-template">
-        <li class="my-day-t" data-datecomplete='{{ datecomplete }}'>{{ value }}</li>
+        <li class="my-day-t" data-day='{{ dataday }}' data-datecomplete='{{ datecomplete }}'>{{ value }}</li>
+      </script>
+
+      <script id="template-week" type="text/x-handlebars-template">
+        <li class="my-week-day" data-day='{{ dataday }}'>{{ dayname }}</li>
       </script>
 
 
@@ -26,6 +30,8 @@
 
     <div class="selected-month">
       <h2 id="currentYM"></h2>
+      <ul id="days-week">
+      </ul>
       <ul id="my-month-new">
       </ul>
     </div>
