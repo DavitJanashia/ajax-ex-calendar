@@ -193,7 +193,7 @@
 // ************************************************
 
 
-// collegare al calendario del 2018
+
 
 
 $(document).ready(init);
@@ -210,11 +210,15 @@ function init(){
   var j = 0;
   myRightButton.click(function (){
   j += 1;
+
   currentMonths.month(j);
   // console.log(currentMonth);
   printMonth(currentMonth);
   printHoliday(currentMonth);
-  console.log(j);
+
+  if (currentMonths.year() != 2018) {
+    currentMonths.year(2018);
+  }
   });
 
   myLeftButton.click(function (){
@@ -223,7 +227,9 @@ function init(){
   // console.log(currentMonth);
   printMonth(currentMonth);
   printHoliday(currentMonth);
-  console.log(j);
+  if (currentMonths.year() != 2018) {
+    currentMonths.year(2018);
+  }
   });
 }
 
@@ -272,30 +278,35 @@ function printHoliday(currentMonth){
       'year': myYear
     },
     success: function (data, state){
-      var myResp = data['response'];
-      // var targetLi = $('#my-month-new > li');
-      // var datadata = targetLi.data('datecomplete');
+      if(data.success == true){
+        var myResp = data['response'];
+        // var targetLi = $('#my-month-new > li');
+        // var datadata = targetLi.data('datecomplete');
 
-      // console.log(datadata);
+        // console.log(datadata);
 
-      for (var i = 0; i < myResp.length; i++) {
-        var myName = myResp[i]['name'];
-        var myDate = myResp[i]['date'];
-        // $("#my-month-new > li[date-datecomplete='" + myResp[i]['date'] + "']");
-        var holiDD = $("#my-month-new > li[data-datecomplete='" + myResp[i]['date'] + "']");
-        console.log(holiDD);
-        holiDD.append(' ' + myName);
-        // console.log("#my-january-new > li[data-datecomplete='" + myResp[i]['date'] + "']");
+        for (var i = 0; i < myResp.length; i++) {
+          var myName = myResp[i]['name'];
+          var myDate = myResp[i]['date'];
+          // $("#my-month-new > li[date-datecomplete='" + myResp[i]['date'] + "']");
+          var holiDD = $("#my-month-new > li[data-datecomplete='" + myResp[i]['date'] + "']");
+          console.log(holiDD);
+          holiDD.append(' ' + myName);
+          // console.log("#my-january-new > li[data-datecomplete='" + myResp[i]['date'] + "']");
 
 
-        // if(datadata == myDate){
-        //   targetNN.html('festa');
-        // }
+          // if(datadata == myDate){
+            //   targetNN.html('festa');
+            // }
 
-        // console.log(myResp[i]);
+            // console.log(myResp[i]);
+          }
+
+          // console.log(myResp);
+
+      } else {
+        alert('Error! non ci sono i dati disponibili');
       }
-
-      // console.log(myResp);
 
     },
 
