@@ -23,3 +23,25 @@ body, html {
   top: 0;
   left: 300px;
 }
+
+ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#my-month-new li{
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+}
+
+#my-month-new{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.selected-month{
+width: 700px;
+}
