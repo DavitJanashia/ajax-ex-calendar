@@ -199,21 +199,49 @@
 $(document).ready(init);
 
 function init(){
-  var currentMonth = moment('2018-01-01');
+  var myRightButton = $('#button-right');
+  var myLeftButton = $('#button-left');
+
+  var currentMonths = moment('2018-01-01');
+  var currentMonth = currentMonths.month(0);
+  printMonth(currentMonth);
+  printHoliday(currentMonth);
+
+  var j = 0;
+  myRightButton.click(function (){
+  j += 1;
+  currentMonths.month(j);
   // console.log(currentMonth);
   printMonth(currentMonth);
   printHoliday(currentMonth);
+  console.log(j);
+  });
+
+  myLeftButton.click(function (){
+    j -= 1;
+  currentMonths.month(j);
+  // console.log(currentMonth);
+  printMonth(currentMonth);
+  printHoliday(currentMonth);
+  console.log(j);
+  });
 }
+
+// ******************************************************************
+
+
+// ******************************************************************
+
+
 
 function printMonth(currentMonth){
   var daysInMonth = currentMonth.daysInMonth();
   var templateGen = $('#template-gen').html();
   var compiledGen = Handlebars.compile(templateGen);
-  var targetGen = $('#my-january-new');
+  var targetGen = $('#my-month-new');
   targetGen.html('');
 
 
-  // targetGen.html('');
   for (var i = 1; i <= daysInMonth; i++) {
     var momObj = moment({
       years:currentMonth.year(),
@@ -245,7 +273,7 @@ function printHoliday(currentMonth){
     },
     success: function (data, state){
       var myResp = data['response'];
-      // var targetLi = $('#my-january-new > li');
+      // var targetLi = $('#my-month-new > li');
       // var datadata = targetLi.data('datecomplete');
 
       // console.log(datadata);
@@ -253,8 +281,8 @@ function printHoliday(currentMonth){
       for (var i = 0; i < myResp.length; i++) {
         var myName = myResp[i]['name'];
         var myDate = myResp[i]['date'];
-        // $("#my-january-new > li[date-datecomplete='" + myResp[i]['date'] + "']");
-        var holiDD = $("#my-january-new > li[data-datecomplete='" + myResp[i]['date'] + "']");
+        // $("#my-month-new > li[date-datecomplete='" + myResp[i]['date'] + "']");
+        var holiDD = $("#my-month-new > li[data-datecomplete='" + myResp[i]['date'] + "']");
         console.log(holiDD);
         holiDD.append(' ' + myName);
         // console.log("#my-january-new > li[data-datecomplete='" + myResp[i]['date'] + "']");

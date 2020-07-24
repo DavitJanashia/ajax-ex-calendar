@@ -11,3 +11,15 @@ body, html {
   height: 100vh;
   font-family: arial, monospace;
 }
+
+#button-right{
+  position: absolute;
+  top: 0;
+  left: 500px;
+}
+
+#button-left{
+  position: absolute;
+  top: 0;
+  left: 300px;
+}
