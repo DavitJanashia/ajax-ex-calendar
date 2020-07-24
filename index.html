@@ -12,12 +12,12 @@
     <!-- moment js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
       <!-- handlebar template -->
-      <script id="template" type="text/x-handlebars-template">
-        <option class="my-opt" value="{{ value }}">{{ valueTxt }}</option>
-      </script>
+      <!-- <script id="template" type="text/x-handlebars-template">
+        <option class="my-opt" value="{{ qq }}">{{ qq }}</option>
+      </script> -->
 
       <script id="template-gen" type="text/x-handlebars-template">
-        <li class="my-day-t" data-value='{{ date }}'>{{ date }}</li>
+        <li class="my-day-t" data-datecomplete='{{ datecomplete }}'>{{ value }}</li>
       </script>
 
 
@@ -26,7 +26,11 @@
 
   <body>
 
-    <select id="my-day" class="" name="">
+    <h2>January 2018</h2>
+    <ul id="my-january-new">
+    </ul>
+
+    <!-- <select id="my-day" class="" name="">
     </select>
 
     <select id="my-month" class="" name="">
@@ -42,7 +46,7 @@
 
     <ul id="my-january">
       <h2>January</h2>
-    </ul>
+    </ul> -->
 
 
     <!-- JavaScript -->

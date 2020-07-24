@@ -1,161 +1,273 @@
+// $(document).ready(init);
+//
+// function init(){
+//
+// }
+// // *****************************************************************************
+// // // handlebar template
+// function myAll (){
+//   var template = $('#template').html();
+//   var compiled = Handlebars.compile(template);
+//   var targetD = $('#my-day');
+//   var targetM = $('#my-month');
+//   var targetY = $('#my-year');
+//
+//   // *****************************************************************************
+//   // days
+//   for (var i = 1; i <= 31; i++) {
+//
+//     var optHtml = compiled({
+//       'value': i,
+//       'valueTxt': i
+//     });
+//     targetD.append(optHtml);
+//   }
+//
+//   // *****************************************************************************
+//   // month
+//   var myMonths = moment.months(); // restituisce un array di mesi
+//
+//   console.log(myMonths);
+//
+//
+//   for (var i = 1; i <= 12; i++) {
+//
+//     var optHtml = compiled({
+//       'value': i,
+//       'valueTxt': myMonths[i - 1]
+//     });
+//     targetM.append(optHtml);
+//   }
+//
+//   // *****************************************************************************
+//   // year
+//
+//   for (var i = 1980; i <= 2020; i++) {
+//
+//     var optHtml = compiled({
+//       'value': i,
+//       'valueTxt': i
+//     });
+//     targetY.append(optHtml);
+//   }
+//
+//
+//   // target deve diventare  un array quindi usiamo questo
+//
+//   var myOpt = $('.my-opt');
+//   for (var j = 0; j < 31; j++) {
+//   }
+// }
+//
+// myAll ();
+//
+// // snack 3
+//
+// // Dopo aver popolato le select, creare un bottone. L'utente sceglierà una data tramite le select e farà click sul bottone.
+// // Al click controlliamo che la data sia valida. 31 Febbraio ad esempio non è una data valida (aiutiamoci con Moment)
+//
+//
+// var btnn = $('#my-btnn');
+//
+//
+//
+// btnn.click(function(){
+//
+//   var targetD = $('#my-day');
+//   var targetM = $('#my-month');
+//   var targetY = $('#my-year');
+//
+//   var day = targetD.val();
+//   var month = targetM.val();
+//   var year = targetY.val();
+//
+//
+//   if (month == 2){
+//     console.log('ciao');
+//   }
+// });
+//
+//
+//
+//
+// $('#my-btnn-prova').click(function () {
+//   var valueDay = $('#my-day').val();
+//   var valueMonth = $('#my-month').val();
+//   var valueYear = $('#my-year').val();
+//
+//   var mom = moment("'" + valueMonth + "/" + valueDay + "/" + valueYear + "'", 'MM/DD/YYYY').format('ddd DD MMMM YYYY');
+//   console.log("'" + valueMonth + "/" + valueDay + "/" + valueYear + "'");
+//
+//   console.log(mom);
+// });
+// // ********************************************************
+// // Ajax.function
+//
+// function getCalendar2018(){
+//   $.ajax({
+//
+//     url: 'https://flynn.boolean.careers/exercises/api/holidays',
+//     method: 'GET',
+//     data: {
+//       'month': 0,
+//       'year': 2018
+//     },
+//     success: function (data, state){
+//       // console.log(data); // oggetto con le festivita
+//       var arFesta = data['response'];
+//       console.log(arFesta);
+//       // ********************************************************
+//       // mese di gennaio
+//       var templateGen = $('#template-gen').html();
+//       // console.log(templateGen);
+//       var compiledGen = Handlebars.compile(templateGen);
+//       var targetGen = $('#my-january');
+//
+//       console.log(arFesta[0]['date'], arFesta[1]['date']);
+//
+//       var myArFesta = [];
+//       for (var l = 0; l < arFesta.length; l++) {
+//         myArFesta.push(arFesta[l]['date']);
+//       }
+//
+//
+//
+//
+//
+//       // console.log(myArFesta);
+//
+//       // if (dateCondizione == stringaCondizione)
+//
+//       var dateCondizione = arFesta[0]['date'];
+//
+//       var arProvaaa = [];
+//
+//       for (var q = 0; q < 31; q++) {
+//         var formattedNumber = ("0" + q).slice(-2);
+//         var stringaCondizione = '2018-01-' + formattedNumber;
+//         arProvaaa.push(stringaCondizione);
+//       }
+//       console.log(arProvaaa);
+//
+//       for (var k = 1; k <= 31; k++) {
+//
+//         var formattedNumber = ("0" + k).slice(-2);
+//         var stringaCondizione = '2018-01-' + formattedNumber;
+//
+//         // check if (dateCondizione == stringaCondizione) and if (dateCondizione ==)
+//         // se true appendere il nome del festivo corrispondente al date
+//
+//
+//         for (var p = 0; p < arFesta.length; p++) {
+//           if (arFesta[p]['date'] == stringaCondizione){
+//             // array.push();
+//             targetGen.append(compiledGen({
+//               date: 'Festa',
+//               name: arFesta[p]['name']
+//             }));
+//           }
+//         }
+//
+//         targetGen.append(compiledGen({
+//           date: stringaCondizione
+//         }));
+//
+//         // console.log(formattedNumber);
+//         }
+//
+//
+//
+//
+//     },
+//
+//     error: function (request, state, error){
+//       console.log('error!');
+//       console.log(request);
+//       console.log(state);
+//       console.log(error);
+//     }
+//   });
+//
+// }
+// getCalendar2018();
+// ************************************************
+
+
+// collegare al calendario del 2018
+
+
 $(document).ready(init);
 
 function init(){
-
+  var currentMonth = moment('2018-01-01');
+  // console.log(currentMonth);
+  printMonth(currentMonth);
+  printHoliday(currentMonth);
 }
-// *****************************************************************************
-// // handlebar template
-function myAll (){
-  var template = $('#template').html();
-  var compiled = Handlebars.compile(template);
-  var targetD = $('#my-day');
-  var targetM = $('#my-month');
-  var targetY = $('#my-year');
 
-  // *****************************************************************************
-  // days
-  for (var i = 1; i <= 31; i++) {
+function printMonth(currentMonth){
+  var daysInMonth = currentMonth.daysInMonth();
+  var templateGen = $('#template-gen').html();
+  var compiledGen = Handlebars.compile(templateGen);
+  var targetGen = $('#my-january-new');
+  targetGen.html('');
 
-    var optHtml = compiled({
-      'value': i,
-      'valueTxt': i
+
+  // targetGen.html('');
+  for (var i = 1; i <= daysInMonth; i++) {
+    var momObj = moment({
+      years:currentMonth.year(),
+      months:currentMonth.month(),
+      days:i,
     });
-    targetD.append(optHtml);
-  }
+    // console.log(momObj);
 
-  // *****************************************************************************
-  // month
-  var myMonths = moment.months(); // restituisce un array di mesi
-
-  console.log(myMonths);
-
-
-  for (var i = 1; i <= 12; i++) {
-
-    var optHtml = compiled({
-      'value': i,
-      'valueTxt': myMonths[i - 1]
+    var daysHTML = compiledGen({
+      value: i,
+      datecomplete: momObj.format('YYYY-MM-DD')
     });
-    targetM.append(optHtml);
-  }
+    targetGen.append(daysHTML);
 
-  // *****************************************************************************
-  // year
-
-  for (var i = 1980; i <= 2020; i++) {
-
-    var optHtml = compiled({
-      'value': i,
-      'valueTxt': i
-    });
-    targetY.append(optHtml);
-  }
-
-
-  // target deve diventare  un array quindi usiamo questo
-
-  var myOpt = $('.my-opt');
-  for (var j = 0; j < 31; j++) {
   }
 }
 
-myAll ();
-
-// snack 3
-
-// Dopo aver popolato le select, creare un bottone. L'utente sceglierà una data tramite le select e farà click sul bottone.
-// Al click controlliamo che la data sia valida. 31 Febbraio ad esempio non è una data valida (aiutiamoci con Moment)
-
-
-var btnn = $('#my-btnn');
-
-
-
-btnn.click(function(){
-
-  var targetD = $('#my-day');
-  var targetM = $('#my-month');
-  var targetY = $('#my-year');
-
-  var day = targetD.val();
-  var month = targetM.val();
-  var year = targetY.val();
-
-
-  if (month == 2){
-    console.log('ciao');
-  }
-});
-
-
-
-
-$('#my-btnn-prova').click(function () {
-  var valueDay = $('#my-day').val();
-  var valueMonth = $('#my-month').val();
-  var valueYear = $('#my-year').val();
-
-  var mom = moment("'" + valueMonth + "/" + valueDay + "/" + valueYear + "'", 'MM/DD/YYYY').format('ddd DD MMMM YYYY');
-  console.log("'" + valueMonth + "/" + valueDay + "/" + valueYear + "'");
-
-  console.log(mom);
-});
-// ********************************************************
-// Ajax.function
-
-function getCalendar2018(){
+function printHoliday(currentMonth){
+  var myYear = currentMonth.year();
+  var myMonth = currentMonth.month();
+  console.log(myYear, myMonth);
   $.ajax({
 
     url: 'https://flynn.boolean.careers/exercises/api/holidays',
     method: 'GET',
     data: {
-      'month': 0,
-      'year': 2018
+      'month': myMonth,
+      'year': myYear
     },
     success: function (data, state){
-      // console.log(data); // oggetto con le festivita
-      var arFesta = data['response'];
-      console.log(arFesta);
-      // ********************************************************
-      // mese di gennaio
-      var templateGen = $('#template-gen').html();
-      // console.log(templateGen);
-      var compiledGen = Handlebars.compile(templateGen);
-      var targetGen = $('#my-january');
+      var myResp = data['response'];
+      // var targetLi = $('#my-january-new > li');
+      // var datadata = targetLi.data('datecomplete');
 
-      console.log(arFesta[0]['date'], arFesta[1]['date']);
+      // console.log(datadata);
 
-      var myArFesta = [];
-      for (var l = 0; l < arFesta.length; l++) {
-        myArFesta.push(arFesta[l]['date']);
+      for (var i = 0; i < myResp.length; i++) {
+        var myName = myResp[i]['name'];
+        var myDate = myResp[i]['date'];
+        // $("#my-january-new > li[date-datecomplete='" + myResp[i]['date'] + "']");
+        var holiDD = $("#my-january-new > li[data-datecomplete='" + myResp[i]['date'] + "']");
+        console.log(holiDD);
+        holiDD.append(' ' + myName);
+        // console.log("#my-january-new > li[data-datecomplete='" + myResp[i]['date'] + "']");
+
+
+        // if(datadata == myDate){
+        //   targetNN.html('festa');
+        // }
+
+        // console.log(myResp[i]);
       }
 
-
-
-
-
-      // console.log(myArFesta);
-      var dateCondizione = arFesta[0]['date'];
-
-
-      for (var k = 01; k <= 31; k++) {
-
-
-        var formattedNumber = ("0" + k).slice(-2);
-        var stringaCondizione = '2018-01-' + formattedNumber;
-        // console.log(formattedNumber);
-        if (myArFesta.includes(stringaCondizione)){
-          targetGen.append(compiledGen({
-            date: 'Festa'
-          }));
-        } else {
-          targetGen.append(compiledGen({
-            date: stringaCondizione
-          }));
-
-        }
-
-      }
+      // console.log(myResp);
 
     },
 
@@ -168,15 +280,46 @@ function getCalendar2018(){
   });
 
 }
-getCalendar2018();
 
 
 
-// collegare al calendario del 2018
 
 
 
-//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // esercizio domani
 //
@@ -205,7 +348,7 @@ getCalendar2018();
 // API: https://flynn.boolean.careers/exercises/api/holidays
 // New
 //
-// Giovanni Cappelletti:boolean:  1:16 PM
+
 // PARAMS:
 // year: 2018
 // month: 0 ~ 11
