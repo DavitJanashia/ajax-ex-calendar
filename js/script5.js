@@ -206,12 +206,13 @@ function init(){
   var currentMonth = currentMonths.month(0);
   printMonth(currentMonth);
   printHoliday(currentMonth);
+  $('#currentYM').html(currentMonths.format('YYYY MMMM'));
 
   var j = 0;
   myRightButton.click(function (){
   j += 1;
-
   currentMonths.month(j);
+  $('#currentYM').html(currentMonths.format('YYYY MMMM'));
   // console.log(currentMonth);
   printMonth(currentMonth);
   printHoliday(currentMonth);
@@ -224,6 +225,7 @@ function init(){
   myLeftButton.click(function (){
     j -= 1;
   currentMonths.month(j);
+  $('#currentYM').html(currentMonths.format('YYYY MMMM'));
   // console.log(currentMonth);
   printMonth(currentMonth);
   printHoliday(currentMonth);
@@ -231,10 +233,10 @@ function init(){
     currentMonths.year(2018);
   }
   });
+
 }
 
 // ******************************************************************
-
 
 // ******************************************************************
 
