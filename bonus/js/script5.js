@@ -6,17 +6,32 @@ function init(){
 
   var currentMonths = moment('2018-01-01');
   var currentMonth = currentMonths.month(0);
-  printMonth(currentMonth);
+  var prevMonths = moment('2017-01-01');
+  var prevMonth = prevMonths.month(11);
+
+  var prevLast = parseInt(prevMonth.endOf('month').format('DD'));
+  console.log(prevLast);
+
+
+  printMonth(currentMonth, prevMonth);
   printHoliday(currentMonth);
   $('#currentYM').html(currentMonths.format('YYYY MMMM'));
 
   var j = 0;
+  var w = 11;
+
   myRightButton.click(function (){
   j += 1;
+  w += 1;
   currentMonths.month(j);
+  prevMonths.month(w);
+
+
+  var daysInMonthPrev = prevMonth.daysInMonth();
+  console.log(daysInMonthPrev);
+
   $('#currentYM').html(currentMonths.format('YYYY MMMM'));
-  // console.log(currentMonth);
-  printMonth(currentMonth);
+  printMonth(currentMonth, prevMonth);
   printHoliday(currentMonth);
 
   if (currentMonths.year() != 2018) {
@@ -26,10 +41,16 @@ function init(){
 
   myLeftButton.click(function (){
     j -= 1;
+    w -= 1;
   currentMonths.month(j);
+  prevMonths.month(w);
+
+  var daysInMonthPrev = prevMonth.daysInMonth();
+  console.log(daysInMonthPrev);
+
   $('#currentYM').html(currentMonths.format('YYYY MMMM'));
-  // console.log(currentMonth);
-  printMonth(currentMonth);
+
+  printMonth(currentMonth, prevMonth);
   printHoliday(currentMonth);
   if (currentMonths.year() != 2018) {
     currentMonths.year(2018);
@@ -52,15 +73,6 @@ function printWeek(){
   for (var i = 0; i <= 6; i++) {
     var dd = moment().day(i);
     var weekTxt = dd.format('dddd');
-    // var momObj = moment({
-    //   days:i,
-    // });
-
-    // var dayssHTML = compiledWeek({
-    //   dataday: i,
-    //   dayname: momObj.format('dddd')
-    // });
-    // targetWeek.append(dayssHTML);
     targetWeek.append(compiledWeek({
       dataday: i,
       dayname: weekTxt
@@ -70,12 +82,20 @@ function printWeek(){
 }
 // ******************************************************************
 
-function printMonth(currentMonth){
+function printMonth(currentMonth, prevMonth){
+
+
+
   var daysInMonth = currentMonth.daysInMonth();
   var templateGen = $('#template-gen').html();
   var compiledGen = Handlebars.compile(templateGen);
   var targetGen = $('#my-month-new');
   targetGen.html('');
+
+
+  var daysInMonthPrev = prevMonth.daysInMonth();
+  console.log(daysInMonthPrev);
+
 
 // ******************************************************************
 
@@ -85,12 +105,16 @@ function printMonth(currentMonth){
       months:currentMonth.month(),
       days:i
     });
-    var dataDayMy1 = parseInt(momObj1.format('d'));
 
+
+
+    var dataDayMy1 = parseInt(momObj1.format('d'));
+    diff = daysInMonthPrev - dataDayMy1 + 1;
     while(contatore != dataDayMy1){
 
     // console.log(dataDayMy);
-    targetGen.append('<li class="empty-box"></li>');
+    targetGen.append('<li class="empty-box">'+diff+'</li>');
+    diff++;
     contatore++;
   }
 
