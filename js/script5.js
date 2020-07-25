@@ -198,6 +198,24 @@
 // var k = moment().day(10); //since it greater than 0-6 it sets to the next week and outputs Wed.
 // var o = moment().day(-5); // since the value is -ve it will set for last week
 
+// ************************************************
+const startWeek = moment('2018-01-01').startOf('month').week();
+console.log(startWeek);
+
+const endWeek = moment('2018-11-30').endOf('month').week();
+console.log(endWeek);
+
+
+let calendar = []
+for(var week = startWeek; week<endWeek;week++){
+  calendar.push({
+    week:week,
+    days:Array(7).fill(0).map((n, i) => moment().week(week).startOf('week').clone().add(n + i, 'day'))
+  })
+}
+
+console.log(calendar[0]['days']);
+// ************************************************
 
 
 $(document).ready(init);
