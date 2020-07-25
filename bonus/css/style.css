@@ -55,7 +55,7 @@ ul{
   height: 100px;
   /* border: 1px solid lightgrey; */
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-  font-family:fantasy;
+  font-family:monospace;
 
   font-size: 14px;
   padding: 5px 5px 5px 6px;
@@ -68,7 +68,7 @@ ul{
   flex-direction: column; */
 }
 .my-numbers{
-  font-size: 20px;
+  font-size: 16px;
 }
 
 #days-week li{
@@ -77,8 +77,8 @@ ul{
   height: 50px;
   /* border: 1px solid grey; */
   /* box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1); */
-  font-family: fantasy;
-  font-size: 16px;
+  font-family:monospace, fantasy;
+  font-size: 17px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -115,14 +115,15 @@ position: relative;
 }
 
 #currentYM {
-  font-family: fantasy;
+  font-family: monospace, fantasy;
   display: flex;
   justify-content: center;
-  font-size: 50px;
+  font-size: 60px;
   height: 100px;
   align-items: center;
   color: black;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  margin: 30px 0;
 }
 .cont-box{
   box-shadow: 4px 4px 15px 0 rgba(0, 0, 0, 0.3);
