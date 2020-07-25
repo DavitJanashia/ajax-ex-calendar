@@ -8,30 +8,35 @@ function init(){
   var currentMonth = currentMonths.month(0);
   var prevMonths = moment('2017-01-01');
   var prevMonth = prevMonths.month(11);
+  var nextMonths = moment('2018-01-01');
+  var nextMonth = nextMonths.month(1);
 
-  var prevLast = parseInt(prevMonth.endOf('month').format('DD'));
-  console.log(prevLast);
+  var prevNext = parseInt(nextMonth.endOf('month').format('DD'));
+  // console.log(prevNext);
 
 
-  printMonth(currentMonth, prevMonth);
+  printMonth(currentMonth, prevMonth, nextMonth);
   printHoliday(currentMonth);
   $('#currentYM').html(currentMonths.format('YYYY MMMM'));
 
   var j = 0;
   var w = 11;
+  var u = 1;
 
   myRightButton.click(function (){
   j += 1;
   w += 1;
+  u += 1;
   currentMonths.month(j);
   prevMonths.month(w);
+  nextMonths.month(u);
 
 
   var daysInMonthPrev = prevMonth.daysInMonth();
-  console.log(daysInMonthPrev);
+  // console.log(daysInMonthPrev);
 
   $('#currentYM').html(currentMonths.format('YYYY MMMM'));
-  printMonth(currentMonth, prevMonth);
+  printMonth(currentMonth, prevMonth, nextMonth);
   printHoliday(currentMonth);
 
   if (currentMonths.year() != 2018) {
@@ -42,15 +47,18 @@ function init(){
   myLeftButton.click(function (){
     j -= 1;
     w -= 1;
+    u -= 1;
+
   currentMonths.month(j);
   prevMonths.month(w);
+  nextMonths.month(u);
 
   var daysInMonthPrev = prevMonth.daysInMonth();
-  console.log(daysInMonthPrev);
+  // console.log(daysInMonthPrev);
 
   $('#currentYM').html(currentMonths.format('YYYY MMMM'));
 
-  printMonth(currentMonth, prevMonth);
+  printMonth(currentMonth, prevMonth, nextMonth);
   printHoliday(currentMonth);
   if (currentMonths.year() != 2018) {
     currentMonths.year(2018);
@@ -82,7 +90,7 @@ function printWeek(){
 }
 // ******************************************************************
 
-function printMonth(currentMonth, prevMonth){
+function printMonth(currentMonth, prevMonth, nextMonth){
 
 
 
@@ -94,8 +102,11 @@ function printMonth(currentMonth, prevMonth){
 
 
   var daysInMonthPrev = prevMonth.daysInMonth();
-  console.log(daysInMonthPrev);
-
+  // console.log(daysInMonthPrev);
+  var monthPrev = prevMonth.format('MMM');
+  // console.log(monthPrev);
+  var monthNext = nextMonth.format('MMM');
+  // console.log(monthNext);
 
 // ******************************************************************
 
@@ -113,7 +124,8 @@ function printMonth(currentMonth, prevMonth){
     while(contatore != dataDayMy1){
 
     // console.log(dataDayMy);
-    targetGen.append('<li class="empty-box">'+diff+'</li>');
+    targetGen.append('<li class="empty-box"><div>'+diff+'</div><div>'+monthPrev+'</div></li>');
+
     diff++;
     contatore++;
   }
@@ -149,25 +161,23 @@ function printMonth(currentMonth, prevMonth){
   });
   var dataDayMy2 = parseInt(momObj2.format('d'));
 
-  console.log(dataDayMy2);
+  // console.log(dataDayMy2);
 
   while(contatore2 != (6 - dataDayMy2)){
 
   // console.log(dataDayMy);
-  targetGen.append('<li class="empty-box"></li>');
+  targetGen.append('<li class="empty-box"><div>'+(contatore2 + 1)+'</div><div>'+monthNext+'</div></li>');
   contatore2++;
 }
 
-
 }
-
 
 
 
 function printHoliday(currentMonth){
   var myYear = currentMonth.year();
   var myMonth = currentMonth.month();
-  console.log(myYear, myMonth);
+  // console.log(myYear, myMonth);
   $.ajax({
 
     url: 'https://flynn.boolean.careers/exercises/api/holidays',
@@ -189,7 +199,7 @@ function printHoliday(currentMonth){
           var myDate = myResp[i]['date'];
           // $("#my-month-new > li[date-datecomplete='" + myResp[i]['date'] + "']");
           var holiDD = $("#my-month-new > li[data-datecomplete='" + myResp[i]['date'] + "']");
-          console.log(holiDD);
+          // console.log(holiDD);
           holiDD.append('<h4>' + myName + '</h4>');
           holiDD.addClass('holiday');
           // console.log("#my-january-new > li[data-datecomplete='" + myResp[i]['date'] + "']");
