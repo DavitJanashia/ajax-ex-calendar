@@ -15,7 +15,7 @@
 
 
       <script id="template-gen" type="text/x-handlebars-template">
-        <li class="my-day-t" data-day='{{ dataday }}' data-datecomplete='{{ datecomplete }}'>{{ value }}</li>
+        <li class="my-day-t" data-day='{{ dataday }}' data-datecomplete='{{ datecomplete }}'><div class="my-numbers">{{ value }}</div></li>
       </script>
 
       <script id="template-week" type="text/x-handlebars-template">
@@ -27,19 +27,19 @@
   </head>
 
   <body>
-    <div class="container">
-      <div class="selected-month">
-        <h2 id="currentYM"></h2>
-        <div class="cont-box">
-          <ul id="days-week">
-          </ul>
-          <ul id="my-month-new">
-          </ul>          
-        </div>
+
+    <div class="selected-month">
+      <h2 id="currentYM"></h2>
+      <div class="cont-box">
+        <ul id="days-week">
+        </ul>
+        <ul id="my-month-new">
+        </ul>
+        <button id="button-right" type="button" name="button"><i class="fas fa-chevron-right"></i></button>
+        <button id="button-left" type="button" name="button"><i class="fas fa-chevron-left"></i></button>
       </div>
-      <button id="button-right" type="button" name="button"><i class="fas fa-chevron-right"></i></button>
-      <button id="button-left" type="button" name="button"><i class="fas fa-chevron-left"></i></button>
     </div>
+
 
 
 

@@ -124,7 +124,7 @@ function printMonth(currentMonth, prevMonth, nextMonth){
     while(contatore != dataDayMy1){
 
     // console.log(dataDayMy);
-    targetGen.append('<li class="empty-box"><div>'+diff+'</div><div>'+monthPrev+'</div></li>');
+    targetGen.append('<li class="empty-box"><div class="my-numbers">'+diff+'</div><div>'+monthPrev+'</div></li>');
 
     diff++;
     contatore++;
@@ -166,7 +166,7 @@ function printMonth(currentMonth, prevMonth, nextMonth){
   while(contatore2 != (6 - dataDayMy2)){
 
   // console.log(dataDayMy);
-  targetGen.append('<li class="empty-box"><div>'+(contatore2 + 1)+'</div><div>'+monthNext+'</div></li>');
+  targetGen.append('<li class="empty-box"><div class="my-numbers">'+(contatore2 + 1)+'</div><div>'+monthNext+'</div></li>');
   contatore2++;
 }
 
