@@ -15,7 +15,7 @@
 
 
       <script id="template-gen" type="text/x-handlebars-template">
-        <li class="my-day-t" data-day='{{ dataday }}' data-datecomplete='{{ datecomplete }}'><div class="my-numbers">{{ value }}</div></li>
+        <li  class="my-day-t" data-day='{{ dataday }}' data-datecomplete='{{ datecomplete }}'><div class="my-numbers">{{ value }}</div></li>
       </script>
 
       <script id="template-week" type="text/x-handlebars-template">
@@ -24,13 +24,16 @@
 
 
     <link rel="stylesheet" href="css/style.css"> <!-- chemi css faili -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/locale/it.min.js" type="text/javascript">
+
+    </script>
   </head>
 
   <body>
 
     <div class="selected-month">
-      <h2 id="currentYM"></h2>
       <div class="cont-box">
+        <h2 id="currentYM"></h2>
         <ul id="days-week">
         </ul>
         <ul id="my-month-new">

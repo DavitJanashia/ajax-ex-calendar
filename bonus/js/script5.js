@@ -32,6 +32,9 @@ function init(){
   nextMonths.month(u);
 
 
+
+
+
   var daysInMonthPrev = prevMonth.daysInMonth();
   // console.log(daysInMonthPrev);
 
@@ -215,7 +218,7 @@ function printHoliday(currentMonth){
           // console.log(myResp);
 
       } else {
-        alert('Error! non ci sono i dati disponibili');
+        alert('Non ci sono i dati disponibili per l\'anno selezionato!');
       }
 
     },
