@@ -123,7 +123,8 @@ ul{
 }
 
 .selected-month{
-width: 700px;
+min-width: 700px;
+max-width: 700px;
 margin: auto;
 position: relative;
 }
@@ -156,4 +157,31 @@ position: relative;
   box-shadow: 4px 4px 15px 0 rgba(0, 0, 0, 0.3);
   position: relative;
   background-color: rgba(255, 255,255, 0.8);
+}
+
+/* media query */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 674px) {
+  .selected-month{
+    transform: scale(0.7);
+  }
+  #button-right, #button-left{
+    display: none;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 675px) and (max-width: 854px) {
+  .selected-month{
+    transform: scale(0.8);
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
 }
