@@ -14,6 +14,16 @@ function init(){
   var prevNext = parseInt(nextMonth.endOf('month').format('DD'));
   // console.log(prevNext);
 
+  $(document).keyup(function (event){
+    console.log(event.which);
+    if(event.which == 39){
+      goRight();
+    } else if (event.which == 37){
+      goLeft();
+    }
+
+  });
+
 
   printMonth(currentMonth, prevMonth, nextMonth);
   printHoliday(currentMonth);
