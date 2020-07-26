@@ -19,58 +19,55 @@ function init(){
   printHoliday(currentMonth);
   $('#currentYM').html(currentMonths.format('YYYY MMMM'));
 
+  myRightButton.click(goRight);
+  myLeftButton.click(goLeft);
+
   var j = 0;
   var w = 11;
   var u = 1;
 
-  myRightButton.click(function (){
-  j += 1;
-  w += 1;
-  u += 1;
-  currentMonths.month(j);
-  prevMonths.month(w);
-  nextMonths.month(u);
+  function goRight(){
+    j += 1;
+    w += 1;
+    u += 1;
+    currentMonths.month(j);
+    prevMonths.month(w);
+    nextMonths.month(u);
 
+    var daysInMonthPrev = prevMonth.daysInMonth();
 
+    $('#currentYM').html(currentMonths.format('YYYY MMMM'));
+    printMonth(currentMonth, prevMonth, nextMonth);
+    printHoliday(currentMonth);
 
-
-
-  var daysInMonthPrev = prevMonth.daysInMonth();
-  // console.log(daysInMonthPrev);
-
-  $('#currentYM').html(currentMonths.format('YYYY MMMM'));
-  printMonth(currentMonth, prevMonth, nextMonth);
-  printHoliday(currentMonth);
-
-  if (currentMonths.year() != 2018) {
-    currentMonths.year(2018);
+    if (currentMonths.year() != 2018) {
+      currentMonths.year(2018);
+    }
   }
-  });
 
-  myLeftButton.click(function (){
-    j -= 1;
-    w -= 1;
-    u -= 1;
+  function goLeft(){
+      j -= 1;
+      w -= 1;
+      u -= 1;
 
-  currentMonths.month(j);
-  prevMonths.month(w);
-  nextMonths.month(u);
+    currentMonths.month(j);
+    prevMonths.month(w);
+    nextMonths.month(u);
 
-  var daysInMonthPrev = prevMonth.daysInMonth();
-  // console.log(daysInMonthPrev);
+    var daysInMonthPrev = prevMonth.daysInMonth();
+    $('#currentYM').html(currentMonths.format('YYYY MMMM'));
 
-  $('#currentYM').html(currentMonths.format('YYYY MMMM'));
-
-  printMonth(currentMonth, prevMonth, nextMonth);
-  printHoliday(currentMonth);
-  if (currentMonths.year() != 2018) {
-    currentMonths.year(2018);
+    printMonth(currentMonth, prevMonth, nextMonth);
+    printHoliday(currentMonth);
+    if (currentMonths.year() != 2018) {
+      currentMonths.year(2018);
+    }
   }
-  });
 
   printWeek()
-
 }
+
+
 
 // ******************************************************************
 function printWeek(){
@@ -127,7 +124,7 @@ function printMonth(currentMonth, prevMonth, nextMonth){
     while(contatore != dataDayMy1){
 
     // console.log(dataDayMy);
-    targetGen.append('<li class="empty-box"><div class="my-numbers">'+diff+'</div><div>'+monthPrev+'</div></li>');
+    targetGen.append('<li class="prev-box"><div class="my-numbers">'+diff+'</div><div>'+monthPrev+'</div></li>');
 
     diff++;
     contatore++;
@@ -169,7 +166,7 @@ function printMonth(currentMonth, prevMonth, nextMonth){
   while(contatore2 != (6 - dataDayMy2)){
 
   // console.log(dataDayMy);
-  targetGen.append('<li class="empty-box"><div class="my-numbers">'+(contatore2 + 1)+'</div><div>'+monthNext+'</div></li>');
+  targetGen.append('<li class="next-box"><div class="my-numbers">'+(contatore2 + 1)+'</div><div>'+monthNext+'</div></li>');
   contatore2++;
 }
 
@@ -232,75 +229,3 @@ function printHoliday(currentMonth){
   });
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// esercizio domani
-//
-// Descrizione:
-// Creiamo un calendario dinamico con le festività.
-// Il calendario partirà da gennaio 2018 e si concluderà a dicembre 2018 (unici dati disponibili sull'API).
-// Milestone 1
-// Creiamo il mese di Gennaio, e con la chiamata all'API inseriamo le festività.
-// Milestone 2
-// Diamo la possibilità di cambiare mese, gestendo il caso in cui l'API non possa ritornare festività.
-// Attenzione!
-// Ogni volta che cambio mese dovrò:
-// Controllare se il mese è valido (per ovviare al problema che l'API non carichi holiday non del 2018)
-// Controllare quanti giorni ha il mese scelto formando così una lista
-// Chiedere all'api quali sono le festività per il mese scelto
-// Evidenziare le festività nella lista
-// Consigli e domande del giorno:
-// Abbiamo visto assieme una libereria che serve per gestire le date... quale sarà?
-// Una chiamata ajax può anche non andare a buon fine, che si fa in quel caso? Lasciamo l'utente ad attendere? ;)
-//
-//
-//
-//
-//
-// 1:03
-// API: https://flynn.boolean.careers/exercises/api/holidays
-// New
-//
-
-// PARAMS:
-// year: 2018
-// month: 0 ~ 11

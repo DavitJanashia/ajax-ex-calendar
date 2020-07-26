@@ -98,11 +98,22 @@ ul{
   /* text-shadow: 1px 1px 7px rgba(0, 0, 0, 0.3); */
 
 }
-i{
+#button-right i, #button-left i{
   color: white;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   font-size: 25px;
+}
 
+#button-right:hover i{
+  color:grey;
+  text-shadow: none;
+  cursor: pointer;
+}
+
+#button-left:hover i{
+  color:grey;
+  text-shadow: none;
+  cursor: pointer;
 }
 
 #my-month-new, #days-week{
@@ -122,7 +133,7 @@ position: relative;
   font-size: 15px;
 }
 
-.empty-box{
+.next-box, .prev-box{
   width: 100px;
   height: 100px;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
